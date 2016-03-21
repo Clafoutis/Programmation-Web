@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <style>
+      #carre{
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="carre"></div>
+  </body>
+
+  <script>
+
+        var debut = 0;
+        var elem = document.getElementById("carre");
+        var left = 1000;
+        var step;
+        var fps=80; // Changer fps de 10 à 80.
+
+        function pausecomp(millis){
+            var date = new Date();
+            var curDate = null;
+            do {
+                curDate = new Date();
+            } while(curDate-date < millis);
+        }
+  
+        function loop(timestamp){
+            if (debut==0){
+                debut=timestamp;
+            }
+            elem.style.left = (left-(step=timestamp-debut)) + "px";
+            if (step>=0){
+                requestAnimationFrame(loop);
+                pausecomp(1000/fps);
+            }
+
+        }
+        requestAnimationFrame(loop);
+
+  </script>
+</html>
+

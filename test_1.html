@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<style>
+			#carre{
+				height: 20px;
+				width: 20px;
+				position: absolute;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="carre"></div>
+	</body>
+
+	<script>
+		var elem = document.getElementById("carre");
+		var left = 400;
+		var timer;
+		// Move the element 10px on the right every 16ms
+		timer = setInterval(function() {
+			elem.style.left=(left-=10)+"px";
+			pausecomp(16); // On pause pendant 30ms
+			// clear the timer at 400px to stop the animation
+			if(left<=0){
+				clearInterval(timer);
+			}
+		}, 16);
+		function pausecomp(millis){
+			var date = new Date();
+			var curDate = null;
+			do{ 
+				curDate = new Date();
+			} while(curDate-date < millis);
+		} 
+	</script>
+</html>
